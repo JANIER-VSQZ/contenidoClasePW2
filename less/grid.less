@@ -1,0 +1,38 @@
+//se invierte el signo >= o <= por que si no da error
+.generarColumnas(@prefix, @columnas, @iteracion: 1) when(@iteracion =< @columnas) {
+    @column-select : ~'.col-@{prefix}@{iteracion}';
+    @width: (100% / columnas * @iteracion);
+    @{column-select}{flex-basis: @width;}
+    .generarColumnas(@prefix, @columnas, (@iteracion + 1));
+}
+
+.grid-contained{
+    .p-y-3();
+    .row{
+        display: flex;
+        flex-wrap: wrap;
+        [class*='col-']{
+            flex: 0 0;
+            border: 1px solid darken(@background-primary, 30%);
+        }
+
+
+        //interpolacion con ~
+
+        @prefix: ~'@{#breaks-prefix[mobile]}-';
+
+        //sera un mixin
+        .generarColumnas(@prefix, 6);
+
+        @media(min-width: #breaks[tablet]){
+            @prefix: ~'@{#breaks-prefix[mobile]}-'; 
+            .generarColumnas(@prefix, 6);
+        }
+        @media(min-width: #breaks[desktop]){
+
+        }
+        @media(min-width: #breaks[wide]){
+
+        }
+    }
+}

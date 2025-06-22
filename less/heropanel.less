@@ -1,0 +1,23 @@
+@import "variables.less";
+.hero-panel{
+    position: relative;
+    height: 80vh;
+    img{
+        .imgCover();
+    }
+    .hero-action{
+        position: absolute;
+        background-color: @background-secondary;
+        transform: translate(-50%, -50%);
+        width: 380px;
+        text-align: center;
+        .p-x-4();
+        .p-y-5();
+        .text-large();
+        .shadow();
+        &.center{
+            top: 50%;
+            left: 50%;
+        }
+    }
+}
